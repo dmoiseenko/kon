@@ -25,7 +25,7 @@ jobs:
 
     - name: Test
       run: |-
-        echo ${{ github.event.pull_request.head.sha }}
+        echo ${{ github.event.pull_request.base.sha }}
 
     - name: Cloud Build
       run: |-
