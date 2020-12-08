@@ -25,5 +25,4 @@ jobs:
     # Build and push image to Google Container Registry
     - name: Build
       run: |-
-        gcloud builds submit \
-          ./alpi --config=./alpi/cloudbuild.yaml --substitutions=_COMMIT_SHA=$CI_COMMIT_SHA,_HELM_REPO=test212
+        gcloud builds submit ./alpi --config=./alpi/cloudbuild.yaml --substitutions=_COMMIT_SHA=$GITHUB_SHA,_HELM_REPO=test212
