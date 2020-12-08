@@ -2,7 +2,7 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["build", "-t", "us-east1-docker.pkg.dev/$PROJECT_ID/repo-kon/alpi:${_COMMIT_SHA}", "."]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "us-east1-docker.pkg.dev/$PROJECT_ID/repo-kon/alpi"]
+    args: ["push", "us-east1-docker.pkg.dev/$PROJECT_ID/repo-kon/alpi:${_COMMIT_SHA}"]
   - name: "gcr.io/$PROJECT_ID/helm"
     entrypoint: "/bin/sh"
     args:
@@ -12,8 +12,10 @@ steps:
       cd ./helm_package
       helm package ../chart --app-version ${_COMMIT_SHA} --version 0.0.0+${_COMMIT_SHA}
       gsutil cp gs://${_HELM_REPO}/index.yaml .
+      cat index.yaml
       helm repo index . --url https://${_HELM_REPO}.storage.googleapis.com --merge ./index.yaml
       gsutil rsync . gs://${_HELM_REPO}
+      cat index.yaml
     env:
       - "SKIP_CLUSTER_CONFIG=true"
 logsBucket: 'gs://$PROJECT_ID/build-log'
