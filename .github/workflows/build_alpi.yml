@@ -1,4 +1,4 @@
-name: Build alpi
+name: alpi
 
 on: 
   pull_request:
@@ -10,7 +10,7 @@ env:
 
 jobs:
   setup-build:
-    name: Setup and build
+    name: Build
     runs-on: ubuntu-latest
 
     steps:
@@ -23,6 +23,6 @@ jobs:
         service_account_key: ${{ secrets.SA_KEY_GCP_BUILD }}
         project_id: ${{ secrets.PROJECT_ID_GCP_BUILD }}
 
-    - name: Build
+    - name: Cloud Build
       run: |-
         gcloud builds submit ./alpi --config=./alpi/cloudbuild.yaml --substitutions=_COMMIT_SHA=$GITHUB_SHA,_HELM_REPO=test212
