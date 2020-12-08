@@ -1,32 +1,52 @@
 name: alpi
 
-on: 
+on:
   pull_request:
     paths:
       - alpi/**
 
-env:
-  PROJECT_ID: ${{ secrets.PROJECT_ID_GCP_BUILD }}
-
 jobs:
-  setup-build:
+  build:
     name: Build
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v2
+      - name: Checkout kon
+        uses: actions/checkout@v2
+        with:
+          path: kon
 
-    - uses: google-github-actions/setup-gcloud@master
-      with:
-        version: '319.0.0'
-        service_account_key: ${{ secrets.SA_KEY_GCP_BUILD }}
-        project_id: ${{ secrets.PROJECT_ID_GCP_BUILD }}
+      - name: gcloud setup
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          version: "319.0.0"
+          service_account_key: ${{ secrets.SA_KEY_GCP_BUILD }}
+          project_id: ${{ secrets.PROJECT_ID_GCP_BUILD }}
 
-    - name: Test
-      run: |-
-        echo ${{ github.event.pull_request.base.sha }}
+      - name: Test
+        run: |-
+          echo ${{ github.event.pull_request.base.sha }}
+          echo ${{ github.event.pull_request.head.sha }}
+          echo ${{ github.run_id }}
+          echo ${{ github.run_number }}
 
-    - name: Cloud Build
-      run: |-
-        gcloud builds submit ./alpi --config=./alpi/cloudbuild.yaml --substitutions=_COMMIT_SHA=$GITHUB_SHA,_HELM_REPO=test212
+      - name: Submit Cloud Build
+        run: |-
+          gcloud builds submit ./kon/alpi --config=./kon/alpi/cloudbuild.yaml --substitutions=_COMMIT_SHA=${{ github.event.pull_request.head.sha }},_HELM_REPO=test212
+
+      - name: Checkout kon-config
+        uses: actions/checkout@v2
+        with:
+          repository: dmoiseenko/kon-config
+          token: ${{ secrets.PAT_GITHUB }}
+          path: kon-config
+
+      - name: Update kon-config
+        run: |
+          cd kon-config
+          date > generated.txt
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add .
+          git commit -m "generated"
+          git push
