@@ -1,6 +1,9 @@
 name: Build alpi
 
-on: pull_request
+on: 
+  pull_request:
+    paths:
+      - alpi/**
 
 env:
   PROJECT_ID: ${{ secrets.PROJECT_ID_GCP_BUILD }}
@@ -14,15 +17,12 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    # Setup gcloud CLI
-    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+    - uses: google-github-actions/setup-gcloud@master
       with:
         version: '319.0.0'
-        service_account_email: ${{ secrets.SA_EMAIL_GCP_BUILD }}
         service_account_key: ${{ secrets.SA_KEY_GCP_BUILD }}
         project_id: ${{ secrets.PROJECT_ID_GCP_BUILD }}
 
-    # Build and push image to Google Container Registry
     - name: Build
       run: |-
         gcloud builds submit ./alpi --config=./alpi/cloudbuild.yaml --substitutions=_COMMIT_SHA=$GITHUB_SHA,_HELM_REPO=test212
