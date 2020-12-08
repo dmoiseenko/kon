@@ -1,10 +1,29 @@
-name: learn-github-actions
-on: [push]
+name: Build alpi
+
+on: pull_request
+
+env:
+  PROJECT_ID: ${{ secrets.PROJECT_ID_GCP_BUILD }}
+
 jobs:
-  check-bats-version:
+  setup-build:
+    name: Setup and build
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
-      - run: npm install -g bats
-      - run: bats -v
+    - name: Checkout
+      uses: actions/checkout@v2
+
+    # Setup gcloud CLI
+    - uses: GoogleCloudPlatform/github-actions/setup-gcloud@master
+      with:
+        version: '319.0.0'
+        service_account_email: ${{ secrets.SA_EMAIL_GCP_BUILD }}
+        service_account_key: ${{ secrets.SA_KEY_GCP_BUILD }}
+        project_id: ${{ secrets.PROJECT_ID_GCP_BUILD }}
+
+    # Build and push image to Google Container Registry
+    - name: Build
+      run: |-
+        gcloud builds submit \
+          ./alpi --config=./alpi/cloudbuild.yaml --substitutions=_COMMIT_SHA=$CI_COMMIT_SHA,_HELM_REPO=test212
