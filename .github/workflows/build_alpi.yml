@@ -47,4 +47,4 @@ jobs:
           ALPI_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
         run: |
           cd kon-config
-          bash ./scripts/update_alpi.sh
+          ./scripts/update_alpi.py
