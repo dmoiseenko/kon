@@ -10,7 +10,7 @@ steps:
     - |
       mkdir helm_package
       cd ./helm_package
-      helm package ../chart --app-version ${_COMMIT_SHA} --version 0.0.0+${_COMMIT_SHA}
+      helm package ../chart --app-version ${_COMMIT_SHA} --version 0.0.${_PATCH_NUMBER}+${_COMMIT_SHA}
       gsutil cp gs://${_HELM_REPO}/index.yaml .
       cat index.yaml
       helm repo index . --url https://${_HELM_REPO}.storage.googleapis.com --merge ./index.yaml
