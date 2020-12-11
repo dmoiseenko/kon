@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Build
+    name: Create preview
     runs-on: ubuntu-latest
 
     steps:
