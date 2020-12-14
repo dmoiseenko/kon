@@ -14,6 +14,8 @@ steps:
       gsutil cp gs://${_HELM_REPO}/index.yaml .
       helm repo index . --url https://${_HELM_REPO}.storage.googleapis.com --merge ./index.yaml
       gsutil rsync . gs://${_HELM_REPO}
+      gsutil -m setmeta -h "Cache-Control:no-cache" gs://${_HELM_REPO}/*.tgz
+      gsutil -m setmeta -h "Cache-Control:no-cache" gs://${_HELM_REPO}/index.yaml
     env:
       - "SKIP_CLUSTER_CONFIG=true"
 logsBucket: 'gs://$PROJECT_ID/build-log'
