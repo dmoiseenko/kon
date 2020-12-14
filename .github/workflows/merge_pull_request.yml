@@ -1,12 +1,13 @@
-name: Close Pull Request
+name: Merge Pull Request
 
 on:
-  pull_request:
-    types: [closed]
+  push:
+    branches:
+      - master
 
 jobs:
   build:
-    name: Close Pull Request
+    name: Merge Pull Request
     runs-on: ubuntu-latest
 
     steps:
@@ -19,7 +20,8 @@ jobs:
 
       - name: Update kon-config
         env:
-          FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+          ALPI_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
+          FEATURE_BRANCH: main
         run: |
           cd kon-config
-          ./scripts/remove_feature_branch.py
+          ./scripts/update_alpi.py
