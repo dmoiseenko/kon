@@ -25,7 +25,7 @@ jobs:
 
       - name: Submit Cloud Build
         run: |-
-          gcloud builds submit ./kon/alpi --config=./kon/alpi/cloudbuild.yaml \
+          gcloud builds submit ./kon/alpi --config=./kon/alpi/cloudbcloudbuilduild.yaml \
             --substitutions=_COMMIT_SHA=${{ github.event.pull_request.head.sha }},_HELM_REPO=${{ secrets.HELM_REPO }},_PATCH_NUMBER=${{ github.run_id }}
 
       - name: Checkout kon-config
