@@ -3,6 +3,8 @@ name: Merge Pull Request
 on:
   pull_request:
     types: [closed]
+    branches:
+      - main
 
 jobs:
   build:
@@ -10,19 +12,16 @@ jobs:
     runs-on: ubuntu-latest
     if: github.event.pull_request.merged == true
     steps:
-      - name: asd
-        run: |
-          echo $GITHUB_REF
-      # - name: Checkout kon-config
-      #   uses: actions/checkout@v2
-      #   with:
-      #     repository: dmoiseenko/kon-config
-      #     token: ${{ secrets.PAT_GITHUB }}
-      #     path: kon-config
+      - name: Checkout kon-config
+        uses: actions/checkout@v2
+        with:
+          repository: dmoiseenko/kon-config
+          token: ${{ secrets.PAT_GITHUB }}
+          path: kon-config
 
-      # - name: Update kon-config
-      #   env:
-      #     FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
-      #   run: |
-      #     cd kon-config
-      #     ./scripts/promote_development_environment.py
+      - name: Update kon-config
+        env:
+          FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          cd kon-config
+          ./scripts/promote_development_environment.py
