@@ -18,6 +18,7 @@ jobs:
           repository: dmoiseenko/kon-config
           token: ${{ secrets.PAT_GITHUB }}
           path: kon-config
+          fetch-depth: 0
 
       - name: Update kon-config
         env:
