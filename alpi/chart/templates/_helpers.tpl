@@ -49,14 +49,3 @@ Selector labels
 app.kubernetes.io/name: {{ include "alpi.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
-
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "alpi.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "alpi.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
