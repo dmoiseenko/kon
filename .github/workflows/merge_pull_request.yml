@@ -11,16 +11,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout kon-config
-        uses: actions/checkout@v2
-        with:
-          repository: dmoiseenko/kon-config
-          token: ${{ secrets.PAT_GITHUB }}
-          path: kon-config
-
-      - name: Update kon-config
-        env:
-          FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+      - name: asd
         run: |
-          cd kon-config
-          ./scripts/promote_development_environment.py
+          echo ${{ github.event.pull_request.head.ref }}
+          echo ${{ github.event.pull_request }}
+          echo ${{ github.base_ref }}
+      # - name: Checkout kon-config
+      #   uses: actions/checkout@v2
+      #   with:
+      #     repository: dmoiseenko/kon-config
+      #     token: ${{ secrets.PAT_GITHUB }}
+      #     path: kon-config
+
+      # - name: Update kon-config
+      #   env:
+      #     FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+      #   run: |
+      #     cd kon-config
+      #     ./scripts/promote_development_environment.py
