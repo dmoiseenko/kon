@@ -13,9 +13,7 @@ jobs:
     steps:
       - name: asd
         run: |
-          echo ${{ github.event.pull_request.head.ref }}
-          echo ${{ github.event.pull_request }}
-          echo ${{ github.base_ref }}
+          echo $GITHUB_REF
       # - name: Checkout kon-config
       #   uses: actions/checkout@v2
       #   with:
