@@ -18,10 +18,21 @@ jobs:
           repository: dmoiseenko/kon-config
           token: ${{ secrets.PAT_GITHUB }}
           path: kon-config
+          fetch-depth: 0
 
-      - name: Update kon-config
+      - name: Remove preview environment
         env:
           FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
           cd kon-config
           ./scripts/remove_feature_branch.py
+
+      - name: Promote preview environment
+        if: github.event.pull_request.merged == true
+        env:
+          FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          cd kon-config
+          ./scripts/promote_development_environment.py
+      
+      
