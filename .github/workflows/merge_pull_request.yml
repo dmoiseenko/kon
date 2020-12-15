@@ -9,7 +9,7 @@ jobs:
   build:
     name: Merge Pull Request
     runs-on: ubuntu-latest
-
+    if: github.event.pull_request.merged == true
     steps:
       - name: asd
         run: |
