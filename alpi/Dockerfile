@@ -20,4 +20,3 @@ RUN npm install next
 
 EXPOSE 3000
 CMD npm run start
-
