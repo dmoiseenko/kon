@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "alpi.labels" . | nindent 4 }}
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       {{- include "alpi.selectorLabels" . | nindent 6 }}
