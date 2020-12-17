@@ -4,6 +4,8 @@ metadata:
   name: {{ include "alpi.fullname" . }}
   labels:
     {{- include "alpi.labels" . | nindent 4 }}
+  annotations:
+    external-dns.alpha.kubernetes.io/hostname: alpi-1.dev.dmoiseenko.me.
 spec:
   type: {{ .Values.service.type }}
   ports:
