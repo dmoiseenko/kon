@@ -5,7 +5,6 @@ metadata:
   labels:
     {{- include "alpi.labels" . | nindent 4 }}
   annotations:
-    external-dns.alpha.kubernetes.io/hostname: svc.{{ .Release.Namespace }}.dev.dmoiseenko.me.
     beta.cloud.google.com/backend-config: '{"default": "config-default"}'
     cloud.google.com/neg: '{"ingress": true}'
 spec:
