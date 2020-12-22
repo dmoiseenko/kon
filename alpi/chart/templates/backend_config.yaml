@@ -4,6 +4,6 @@ metadata:
   name: config-default
 spec:
   iap:
-    enabled: true
+    enabled: false
     oauthclientCredentials:
       secretName: my-secret
