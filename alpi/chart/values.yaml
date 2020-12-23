@@ -9,4 +9,3 @@ fullnameOverride: ""
 service:
   type: ClusterIP
   port: 80
-
