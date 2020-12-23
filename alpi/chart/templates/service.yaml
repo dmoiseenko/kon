@@ -4,9 +4,9 @@ metadata:
   name: {{ include "alpi.fullname" . }}
   labels:
     {{- include "alpi.labels" . | nindent 4 }}
-  annotations:
-    beta.cloud.google.com/backend-config: '{"default": "config-default"}'
-    cloud.google.com/neg: '{"ingress": true}'
+  # annotations:
+  #   beta.cloud.google.com/backend-config: '{"default": "config-default"}'
+  #   cloud.google.com/neg: '{"ingress": true}'
 spec:
   type: {{ .Values.service.type }}
   ports:

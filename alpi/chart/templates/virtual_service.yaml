@@ -1,0 +1,15 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: alpi
+spec:
+  hosts:
+  - "*"
+  gateways:
+  - alpi-gateway
+  http:
+    route:
+    - destination:
+        host: {{ include "alpi.fullname" . }}
+        port:
+          number: {{ .Values.service.port }}
