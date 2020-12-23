@@ -8,7 +8,7 @@ spec:
   gateways:
   - alpi-gateway
   http:
-    route:
+  - route:
     - destination:
         host: {{ include "alpi.fullname" . }}
         port:
