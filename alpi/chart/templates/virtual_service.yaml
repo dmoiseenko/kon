@@ -6,7 +6,7 @@ spec:
   hosts:
   - "{{ .Release.Namespace }}.dev.dmoiseenko.me"
   gateways:
-  - alpi-gateway
+  - istio-system/ingress-gateway
   http:
   - route:
     - destination:
