@@ -11,7 +11,7 @@ steps:
       mkdir helm_package
       cd ./helm_package
       helm package ../chart --app-version ${_COMMIT_SHA} --version 0.0.${_PATCH_NUMBER}+${_COMMIT_SHA}
-      gsutil rsync -x ".*tgz$" gs://${_HELM_REPO_BUCKET_NAME}/index.yaml .
+      gsutil rsync -x ".*tgz$" gs://${_HELM_REPO_BUCKET_NAME}/ .
       helm repo index . --url https://${_HELM_REPO_BUCKET_NAME}.storage.googleapis.com --merge ./index.yaml
       gsutil rsync . gs://${_HELM_REPO_BUCKET_NAME}
       gsutil -m setmeta -h "Cache-Control:no-cache,max-age=0" gs://${_HELM_REPO_BUCKET_NAME}/*.tgz
