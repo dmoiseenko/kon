@@ -20,13 +20,13 @@ jobs:
         uses: google-github-actions/setup-gcloud@master
         with:
           version: "319.0.0"
-          service_account_key: ${{ secrets.SA_KEY_GCP_BUILD }}
-          project_id: ${{ secrets.PROJECT_ID_GCP_BUILD }}
+          service_account_key: ${{ secrets.BUILD_PROJECT_SA_KEY }}
+          project_id: ${{ secrets.BUILD_PROJECT_ID }}
 
       - name: Submit Cloud Build
         run: |-
           gcloud builds submit ./kon/alpi --config=./kon/alpi/cloudbuild.yaml \
-            --substitutions=_COMMIT_SHA=${{ github.event.pull_request.head.sha }},_HELM_REPO=${{ secrets.HELM_REPO }},_PATCH_NUMBER=${{ github.run_id }},_REGISTRY_URL=${{ secrets.KON_REGISTRY_URL }}
+            --substitutions=_COMMIT_SHA=${{ github.event.pull_request.head.sha }},_HELM_REPO_PROJECT_ID=${{ secrets.HELM_REPO_PROJECT_ID }},_PATCH_NUMBER=${{ github.run_id }},_REGISTRY_URL=${{ secrets.KON_REGISTRY_URL }}
 
       - name: Checkout kon-config
         uses: actions/checkout@v2
