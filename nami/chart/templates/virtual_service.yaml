@@ -4,7 +4,7 @@ metadata:
   name: nami
 spec:
   hosts:
-  - hasura-"{{ .Release.Namespace }}.dev.dmoiseenko.me"
+  - "hasura-{{ .Release.Namespace }}.dev.dmoiseenko.me"
   gateways:
   - istio-system/ingress-gateway
   http:
