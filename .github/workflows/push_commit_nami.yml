@@ -1,4 +1,4 @@
-name: alpi
+name: nami
 
 on:
   pull_request:
