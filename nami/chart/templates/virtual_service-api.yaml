@@ -1,0 +1,19 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: nami-api
+spec:
+  hosts:
+  - "{{ .Release.Namespace }}.dev.dmoiseenko.me"
+  gateways:
+  - istio-system/ingress-gateway
+  http:
+  - name: "graphql"
+    match:
+      - uri:
+          prefix: "/v1/graphql"
+    route:
+    - destination:
+        host: {{ include "nami.fullname" . }}
+        port:
+          number: {{ .Values.service.port }}
