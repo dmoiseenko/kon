@@ -4,7 +4,7 @@ metadata:
   name: nami-console
 spec:
   hosts:
-  - "hasura-{{ .Release.Namespace }}.dev.dmoiseenko.me"
+  - "{{ .Release.Namespace }}.hasura.dev.dmoiseenko.me"
   gateways:
   - istio-system/iap-ingress-gateway
   http:
