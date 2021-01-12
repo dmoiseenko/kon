@@ -6,7 +6,7 @@ spec:
   hosts:
   - "hasura-{{ .Release.Namespace }}.dev.dmoiseenko.me"
   gateways:
-  - istio-system/ingress-gateway
+  - istio-system/ingress-gateway-iap
   http:
   - route:
     - destination:
