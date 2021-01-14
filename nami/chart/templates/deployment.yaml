@@ -29,6 +29,10 @@ spec:
         ## enable debugging mode. It is recommended to disable this in production
         - name: HASURA_GRAPHQL_DEV_MODE
           value: "true"
+        - name: HASURA_GRAPHQL_ADMIN_SECRET
+          value: "verylongpasswordstring"
+        - name: HASURA_GRAPHQL_ENABLED_APIS
+          value: "graphql,metadata"
         ports:
         - containerPort: 8080
           protocol: TCP
