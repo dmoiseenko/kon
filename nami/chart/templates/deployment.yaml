@@ -32,7 +32,7 @@ spec:
         - name: HASURA_GRAPHQL_ADMIN_SECRET
           value: "verylongpasswordstring"
         - name: HASURA_GRAPHQL_ENABLED_APIS
-          value: "graphql,metadata"
+          value: "graphql,metadata,config"
         ports:
         - containerPort: 8080
           protocol: TCP
