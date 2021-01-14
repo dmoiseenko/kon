@@ -20,6 +20,10 @@ spec:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/role: "internal-app"
         vault.hashicorp.com/agent-inject-secret-database-config.txt: "internal/data/database/config"
+        vault.hashicorp.com/agent-inject-template-config: |
+          {{ with secret "internal/data/database/config" -}}
+            export HASURA_GRAPHQL_DATABASE_URL="{{ postgres://.Data.data.username:.Data.data.password@35.196.127.103:5432/nami }}"
+          {{- end }}
     spec:
       serviceAccountName: nami
       containers:
@@ -27,8 +31,8 @@ spec:
         imagePullPolicy: IfNotPresent
         name: {{ .Chart.Name }}
         env:
-        - name: HASURA_GRAPHQL_DATABASE_URL
-          value: postgres://nami:nami@35.196.127.103:5432/nami
+        # - name: HASURA_GRAPHQL_DATABASE_URL
+        #   value: postgres://nami:nami@35.196.127.103:5432/nami
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
           value: "true"
         - name: HASURA_GRAPHQL_DEV_MODE
