@@ -16,6 +16,7 @@ spec:
       labels:
         {{- include "nami.selectorLabels" . | nindent 8 }}
     spec:
+      serviceAccountName: nami
       containers:
       - image: hasura/graphql-engine:v1.3.3
         imagePullPolicy: IfNotPresent
