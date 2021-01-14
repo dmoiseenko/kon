@@ -2,7 +2,3 @@ version: 2
 endpoint: https://j3.dev.dmoiseenko.me
 admin_secret: verylongpasswordstring
 metadata_directory: metadata
-
-# actions:
-#   kind: synchronous
-#   handler_webhook_baseurl: http://localhost:3000
