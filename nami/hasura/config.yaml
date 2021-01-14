@@ -1,5 +1,5 @@
 version: 2
-endpoint: http://localhost:43183
+endpoint: https://j3.dev.dmoiseenko.me/v1/graphql
 # metadata_directory: metadata
 # actions:
 #   kind: synchronous
