@@ -28,10 +28,8 @@ spec:
         env:
         - name: HASURA_GRAPHQL_DATABASE_URL
           value: postgres://nami:nami@35.196.127.103:5432/nami
-        ## enable the console served by server
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
           value: "true"
-        ## enable debugging mode. It is recommended to disable this in production
         - name: HASURA_GRAPHQL_DEV_MODE
           value: "true"
         - name: HASURA_GRAPHQL_ADMIN_SECRET
