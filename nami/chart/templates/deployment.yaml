@@ -33,6 +33,8 @@ spec:
           value: "verylongpasswordstring"
         - name: HASURA_GRAPHQL_ENABLED_APIS
           value: "graphql,metadata,config"
+        - name: HASURA_GRAPHQL_CONSOLE_ASSETS_DIR
+          value: "/srv/console-assets"
         ports:
         - containerPort: 8080
           protocol: TCP
