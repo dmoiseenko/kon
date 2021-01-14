@@ -12,6 +12,12 @@ spec:
     match:
       - uri:
           prefix: "/v1/graphql"
+      - uri:
+          prefix: "/v1/query"
+      - uri:
+          prefix: "/v1/version"
+      - uri:
+          prefix: "/healthz"
     route:
     - destination:
         host: {{ include "nami.fullname" . }}
