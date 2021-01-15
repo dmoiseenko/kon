@@ -31,7 +31,7 @@ spec:
         imagePullPolicy: IfNotPresent
         name: {{ .Chart.Name }}
         env:
-          value: postgres://nami:nami1@35.196.127.103:5432/nami
+          value: postgres://nami:nami@35.196.127.103:5432/nami
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
           value: "true"
         - name: HASURA_GRAPHQL_DEV_MODE
