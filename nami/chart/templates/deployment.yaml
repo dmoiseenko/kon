@@ -24,6 +24,11 @@ spec:
           {{`{{- with secret "internal/data/database/config" -}}
             export HASURA_GRAPHQL_DATABASE_URL=postgres://{{ .Data.data.username }}:{{ .Data.data.password }}@35.196.127.103:5432/nami
           {{- end }}`}}
+        vault.hashicorp.com/agent-inject-secret-hasura-config: "internal/data/hasura"
+        vault.hashicorp.com/agent-inject-template-hasura-config: |
+          {{`{{- with secret "internal/data/hasura" -}}
+            export HASURA_GRAPHQL_ADMIN_SECRET={{ .Data.data.admin_secret }}
+          {{- end }}`}}
     spec:
       serviceAccountName: nami
       containers:
@@ -35,7 +40,7 @@ spec:
             port: 8080
         name: {{ .Chart.Name }}
         args:
-            ['sh', '-c', 'source /vault/secrets/database-config && graphql-engine serve']
+            ['sh', '-c', 'source /vault/secrets/database-config && source /vault/secrets/hasura-config && graphql-engine serve']
         env:
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
           value: "true"
