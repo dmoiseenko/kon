@@ -29,9 +29,13 @@ spec:
       containers:
       - image: hasura/graphql-engine:v1.3.3
         imagePullPolicy: IfNotPresent
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
         name: {{ .Chart.Name }}
         args:
-            ['sh', '-c', 'source /vault/secrets/database-config && <entrypoint script>']
+            ['sh', '-c', 'source /vault/secrets/database-config && graphql-engine serve']
         env:
         - name: HASURA_GRAPHQL_ENABLE_CONSOLE
           value: "true"
