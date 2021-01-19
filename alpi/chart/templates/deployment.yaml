@@ -5,7 +5,7 @@ metadata:
   labels:
     {{- include "alpi.labels" . | nindent 4 }}
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       {{- include "alpi.selectorLabels" . | nindent 6 }}
@@ -24,7 +24,7 @@ spec:
               protocol: TCP
           env:
             - name: AUTH0_SECRET
-              value: "123"
+              value: "123asdasdasdasdasdasd"
             - name: AUTH0_BASE_URL
               value: "https://ha1.dev.dmoiseenko.me/"
             - name: AUTH0_ISSUER_BASE_URL
