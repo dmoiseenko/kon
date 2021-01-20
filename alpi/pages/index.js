@@ -2,11 +2,7 @@ import App from "../components/App"
 import InfoBox from "../components/InfoBox"
 import Header from "../components/Header"
 import Submit from "../components/Submit"
-import PostList, {
-  ALL_POSTS_QUERY,
-  allPostsQueryVars,
-} from "../components/PostList"
-import { initializeApollo, addApolloState } from "../lib/apolloClient"
+import PostList from "../components/PostList"
 import { useUser } from "@auth0/nextjs-auth0"
 
 const IndexPage = () => {
@@ -29,20 +25,6 @@ const IndexPage = () => {
     )
   }
   return <a href="/api/auth/login">Login</a>
-}
-
-export async function getStaticProps() {
-  const apolloClient = initializeApollo()
-
-  await apolloClient.query({
-    query: ALL_POSTS_QUERY,
-    variables: allPostsQueryVars,
-  })
-
-  return addApolloState(apolloClient, {
-    props: {},
-    revalidate: 1,
-  })
 }
 
 export default IndexPage
