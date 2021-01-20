@@ -23,6 +23,7 @@ spec:
             export AUTH0_SECRET={{ .Data.data.secret }}
           {{- end }}`}}
     spec:
+      serviceAccountName: alpi
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
