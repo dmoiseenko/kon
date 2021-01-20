@@ -22,6 +22,16 @@ spec:
           {{`{{- with secret "internal/data/auth0" -}}
             export AUTH0_SECRET={{ .Data.data.secret }}
           {{- end }}`}}
+        vault.hashicorp.com/agent-inject-secret-auth0-client-id: "internal/data/auth0"
+        vault.hashicorp.com/agent-inject-template-auth0-client-id: |
+          {{`{{- with secret "internal/data/auth0" -}}
+            export AUTH0_CLIENT_ID={{ .Data.data.client_id }}
+          {{- end }}`}}
+        vault.hashicorp.com/agent-inject-secret-auth0-client-secret: "internal/data/auth0"
+        vault.hashicorp.com/agent-inject-template-auth0-client-secret: |
+          {{`{{- with secret "internal/data/auth0" -}}
+            export AUTH0_CLIENT_SECRET={{ .Data.data.client_secret }}
+          {{- end }}`}}
     spec:
       serviceAccountName: alpi
       containers:
@@ -29,17 +39,13 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
           imagePullPolicy: IfNotPresent
           args:
-            ['sh', '-c', 'source /vault/secrets/auth0-secret && npm run start']
+            ['sh', '-c', 'source /vault/secrets/auth0-secret && source /vault/secrets/auth0-client-id && source /vault/secrets/auth0-client-secret && npm run start']
           ports:
             - name: http
               containerPort: 3000
               protocol: TCP
           env:
             - name: AUTH0_BASE_URL
-              value: "https://ha1.dev.dmoiseenko.me/"
+              value: "https://{{ .Release.Namespace }}.dev.dmoiseenko.me/"
             - name: AUTH0_ISSUER_BASE_URL
               value: "https://dmoiseenko.us.auth0.com"
-            - name: AUTH0_CLIENT_ID
-              value: "ZA32tTUeerrDsUO7L7veyt895uak2pHj"
-            - name: AUTH0_CLIENT_SECRET
-              value: "h3XB4RR3NA8WIgzGpwR3STDlEYzVM9Q-aWANK9eSRkz3i41HnC1TIjpPNWcj8dqN"
