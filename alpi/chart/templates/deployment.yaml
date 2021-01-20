@@ -18,7 +18,7 @@ spec:
         vault.hashicorp.com/agent-inject: "true"
         vault.hashicorp.com/role: "internal-app"
         vault.hashicorp.com/agent-inject-secret-auth0-secret: "internal/data/auth0"
-        vault.hashicorp.com/agent-inject-template-auth0: |
+        vault.hashicorp.com/agent-inject-template-auth0-secret: |
           {{`{{- with secret "internal/data/auth0" -}}
             export AUTH0_SECRET={{ .Data.data.secret }}
           {{- end }}`}}
