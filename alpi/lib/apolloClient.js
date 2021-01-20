@@ -12,8 +12,7 @@ function createApolloClient() {
   return new ApolloClient({
     ssrMode: typeof window === "undefined",
     link: new HttpLink({
-      uri: "https://ha1.dev.dmoiseenko.me/api/graphql", // Server URL (must be absolute)
-      credentials: "same-origin", // Additional fetch() options like `credentials` or `headers`
+      uri: "/api/graphql",
     }),
     cache: new InMemoryCache({
       typePolicies: {
