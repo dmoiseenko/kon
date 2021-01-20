@@ -6,19 +6,11 @@ export default withApiAuthRequired(async function products(req, res) {
   })
 
   const response = await fetch("https://ha1.dev.dmoiseenko.me/v1/graphql", {
-    method: "POST",
+    method: req.method,
     headers: {
       Authorization: `Bearer ${accessToken}`,
     },
-    query: JSON.stringify({
-      query: `
-      {
-          asd {
-              asd
-          }
-      }
-      `,
-    }),
+    body: JSON.stringify(req.body)
   })
 
   const data = await response.json()
