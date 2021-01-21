@@ -23,7 +23,7 @@ export default function PostList() {
     <section>
       <ul>
         {asd.map((post, index) => (
-          <li key={post.id}>
+          <li key={post.asd}>
             <div>
               <span>{post.asd}</span>
             </div>
