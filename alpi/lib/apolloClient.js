@@ -14,15 +14,8 @@ function createApolloClient() {
     link: new HttpLink({
       uri: "/api/graphql",
     }),
-    cache: new InMemoryCache({
-      typePolicies: {
-        Query: {
-          fields: {
-            allPosts: concatPagination(),
-          },
-        },
-      },
-    }),
+    connectToDevTools: true,
+    cache: new InMemoryCache(),
   })
 }
 
