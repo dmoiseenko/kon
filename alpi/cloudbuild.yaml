@@ -14,8 +14,7 @@ steps:
       gsutil rsync -x ".*tgz$" gs://${_HELM_REPO_BUCKET_NAME}/ .
       helm repo index . --url https://${_HELM_REPO_BUCKET_NAME}.storage.googleapis.com --merge ./index.yaml
       gsutil rsync . gs://${_HELM_REPO_BUCKET_NAME}
-      gsutil -m setmeta -h "Cache-Control:no-cache,max-age=0" gs://${_HELM_REPO_BUCKET_NAME}/*.tgz
-      gsutil -m setmeta -h "Cache-Control:no-cache,max-age=0" gs://${_HELM_REPO_BUCKET_NAME}/index.yaml
+      gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://${_HELM_REPO_BUCKET_NAME}/index.yaml
     env:
       - "SKIP_CLUSTER_CONFIG=true"
 logsBucket: 'gs://$PROJECT_ID/build-log'
