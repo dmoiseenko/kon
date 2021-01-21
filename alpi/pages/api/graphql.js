@@ -5,7 +5,7 @@ export default withApiAuthRequired(async function products(req, res) {
     scopes: ["read:all"],
   })
 
-  const response = await fetch(`${process.env.NAMI_SERVICE_URL}/v1/graphql`, {
+  const response = await fetch(process.env.NAMI_GRAPHQL_URL, {
     method: req.method,
     headers: {
       Authorization: `Bearer ${accessToken}`,
