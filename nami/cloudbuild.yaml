@@ -4,13 +4,9 @@ steps:
     args:
     - "-c"
     - |
-      mkdir helm_package
-      cd ./helm_package
-      helm package ../chart --app-version ${_COMMIT_SHA} --version 0.0.${_PATCH_NUMBER}+${_COMMIT_SHA}
-      gsutil rsync -x ".*tgz$" gs://${_HELM_REPO_BUCKET_NAME}/ .
-      helm repo index . --url https://${_HELM_REPO_BUCKET_NAME}.storage.googleapis.com --merge ./index.yaml
-      gsutil rsync . gs://${_HELM_REPO_BUCKET_NAME}
-      gsutil setmeta -h "Cache-Control:no-cache,max-age=0" gs://${_HELM_REPO_BUCKET_NAME}/index.yaml
+      cd ./chart
+      helm package --app-version ${_COMMIT_SHA} --version 0.0.${_PATCH_NUMBER}+${_COMMIT_SHA}
+      curl --data-binary "@nami-0.0.${_PATCH_NUMBER}+${_COMMIT_SHA}.tgz" https://chart-museum-encaxrhdvq-ue.a.run.app/api/charts
     env:
       - "SKIP_CLUSTER_CONFIG=true"
 logsBucket: 'gs://$PROJECT_ID/build-log'
