@@ -1,5 +1,5 @@
 steps:
-  - name: "us-east1-docker.pkg.dev/prj-sh-kon-registry-4846/kon/helm"
+  - name: "${_REGISTRY_URL}/helm"
     entrypoint: "/bin/sh"
     args:
     - "-c"

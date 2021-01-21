@@ -3,7 +3,7 @@ steps:
     args: ["build", "-t", "${_REGISTRY_URL}/alpi:${_COMMIT_SHA}", "."]
   - name: "gcr.io/cloud-builders/docker"
     args: ["push", "${_REGISTRY_URL}/alpi:${_COMMIT_SHA}"]
-  - name: "us-east1-docker.pkg.dev/prj-sh-kon-registry-4846/kon/helm"
+  - name: "${_REGISTRY_URL}/helm"
     entrypoint: "/bin/sh"
     args:
     - "-c"
