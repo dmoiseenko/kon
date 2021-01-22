@@ -1,0 +1,12 @@
+- table:
+    schema: public
+    name: asd
+  select_permissions:
+  - role: foo
+    permission:
+      columns:
+      - asd
+      filter: {}
+- table:
+    schema: public
+    name: test_migration

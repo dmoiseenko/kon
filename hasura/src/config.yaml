@@ -1,0 +1,4 @@
+version: 2
+endpoint: https://example.me
+admin_secret: verylongpasswordstring
+metadata_directory: metadata
