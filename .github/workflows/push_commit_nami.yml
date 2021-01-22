@@ -26,7 +26,7 @@ jobs:
       - name: Submit Cloud Build
         run: |-
           gcloud builds submit ./kon/nami --config=./kon/nami/cloudbuild.yaml \
-            --substitutions=_COMMIT_SHA=${{ github.event.pull_request.head.sha }},_HELM_REPO_BUCKET_NAME=${{ secrets.HELM_REPO_BUCKET_NAME }},_PATCH_NUMBER=${{ github.run_id }},_REGISTRY_URL=${{ secrets.KON_REGISTRY_URL }}
+            --substitutions=_COMMIT_SHA=${{ github.event.pull_request.head.sha }},_KON_HELM_REPO_URL=${{ secrets.KON_HELM_REPO_URL }},_PATCH_NUMBER=${{ github.run_id }},_REGISTRY_URL=${{ secrets.KON_REGISTRY_URL }}
 
       - name: Checkout kon-config
         uses: actions/checkout@v2
