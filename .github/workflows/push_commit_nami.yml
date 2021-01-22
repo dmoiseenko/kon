@@ -3,7 +3,7 @@ name: nami
 on:
   pull_request:
     paths:
-      - nami/**
+      - nami1/**
 
 jobs:
   build:
