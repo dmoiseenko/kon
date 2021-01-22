@@ -1,5 +1,5 @@
 type Mutation {
-  actionName (
+  test (
     arg1: SampleInput!
   ): SampleOutput
 }
@@ -13,6 +13,6 @@ input SampleInput {
 }
 
 type SampleOutput {
-  accessToken : String!
+  hello : String!
 }
 

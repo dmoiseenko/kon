@@ -19,15 +19,13 @@ fi
 
 branch_name=$(git branch --show-current)
 
-docker build --target base -t alpi-dev .
+docker build -t nami-dev .
 
 telepresence \
     --namespace "${branch_name}" \
-    --swap-deployment alpi \
+    --swap-deployment nami \
     --docker-run \
     --rm \
     -it \
-    -v "$(pwd)/pages:/base/pages/:z" \
-    -v "$(pwd)/lib:/base/lib/:z" \
-    -v "$(pwd)/components:/base/components/:z" \
-    alpi-dev sh -c 'source $TELEPRESENCE_ROOT/vault/secrets/auth0-secret && source $TELEPRESENCE_ROOT/vault/secrets/auth0-client-id && source $TELEPRESENCE_ROOT/vault/secrets/auth0-client-secret && npm run dev'
+    -v "$(pwd)/src:/usr/src/app/src:z" \
+    nami-dev npm run dev
