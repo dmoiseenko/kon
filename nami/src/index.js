@@ -6,10 +6,6 @@ fastify.post("/", async (request, reply) => {
   return { hello: "world" }
 })
 
-fastify.get("/", async (request, reply) => {
-  return { hello: "world1" }
-})
-
 const start = async () => {
   try {
     await fastify.listen(3000, '0.0.0.0')
