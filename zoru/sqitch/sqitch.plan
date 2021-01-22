@@ -1,6 +1,0 @@
-%syntax-version=1.0.0
-%project=zoru
-%uri=https://github.com/dmoiseenko/kon/
-
-appschema 2021-01-22T07:52:28Z Denis Moiseenko <dmoiseenko@kolab.com> # Add schema for all flipr objects.
-users [appschema] 2021-01-22T08:15:31Z Denis Moiseenko <dmoiseenko@kolab.com> # Creates table to track our users.
