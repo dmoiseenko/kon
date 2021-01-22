@@ -2,7 +2,7 @@ steps:
   - name: "gcr.io/cloud-builders/git"
     args: ["clone", "https://github.com/GoogleCloudPlatform/cloud-builders-community"]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "us-east1-docker.pkg.dev/prj-sh-kon-registry-4846/kon/helm", "/workspace/cloud-builders-community/helm"]
+    args: ["build", "-t", "${_REGISTRY_URL}/helm", "/workspace/cloud-builders-community/helm"]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "us-east1-docker.pkg.dev/prj-sh-kon-registry-4846/kon/helm"]
+    args: ["push", "${_REGISTRY_URL}/helm"]
 logsBucket: 'gs://$PROJECT_ID/build-log'

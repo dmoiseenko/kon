@@ -2,7 +2,7 @@ steps:
   - name: "gcr.io/cloud-builders/docker"
     args: ["pull", "chartmuseum/chartmuseum"]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["tag", "chartmuseum/chartmuseum", "us-east1-docker.pkg.dev/prj-sh-kon-registry-4846/kon/chartmuseum"]
+    args: ["tag", "chartmuseum/chartmuseum", "${_REGISTRY_URL}/chartmuseum"]
   - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "us-east1-docker.pkg.dev/prj-sh-kon-registry-4846/kon/chartmuseum"]
+    args: ["push", "${_REGISTRY_URL}/chartmuseum"]
 logsBucket: 'gs://$PROJECT_ID/build-log'
