@@ -22,6 +22,8 @@ fi
 
 branch_name=$(git branch --show-current)
 
+docker build --target base -t nextdev .
+
 telepresence \
     --namespace "${branch_name}" \
     --swap-deployment alpi \
