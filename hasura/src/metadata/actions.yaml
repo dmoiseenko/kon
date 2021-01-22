@@ -1,8 +1,8 @@
 actions:
-- name: actionName
+- name: test
   definition:
     kind: synchronous
-    handler: http://localhost:3000
+    handler: http://nami.z2.svc.cluster.local
 custom_types:
   enums: []
   input_objects:
