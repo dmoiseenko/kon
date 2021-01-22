@@ -1,7 +1,7 @@
 replicaCount: 1
 
 image:
-  repository: us-east1-docker.pkg.dev/prj-kon-build-shared-79d7/repo-kon/alpi
+  repository: ""
 
 nameOverride: ""
 fullnameOverride: ""
