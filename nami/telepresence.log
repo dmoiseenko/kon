@@ -394,3 +394,19 @@
  873.7 TEL | [59] ran in 0.02 secs.
  877.7 TEL | (proxy checking local liveness)
  877.8  14 | 2021-01-22T13:27:09+0000 [Poll#info] Checkpoint
+ 903.8 TEL | [60] Running: sudo -n echo -n
+ 903.8 TEL | [60] ran in 0.01 secs.
+ 907.7 TEL | (proxy checking local liveness)
+ 907.8  14 | 2021-01-22T13:27:39+0000 [Poll#info] Checkpoint
+ 933.8 TEL | [61] Running: sudo -n echo -n
+ 933.8 TEL | [61] ran in 0.02 secs.
+ 937.7 TEL | (proxy checking local liveness)
+ 937.8  14 | 2021-01-22T13:28:09+0000 [Poll#info] Checkpoint
+ 963.8 TEL | [62] Running: sudo -n echo -n
+ 963.9 TEL | [62] ran in 0.01 secs.
+ 967.7 TEL | (proxy checking local liveness)
+ 967.8  14 | 2021-01-22T13:28:39+0000 [Poll#info] Checkpoint
+ 993.9 TEL | [63] Running: sudo -n echo -n
+ 993.9 TEL | [63] ran in 0.01 secs.
+ 997.7 TEL | (proxy checking local liveness)
+ 997.8  14 | 2021-01-22T13:29:09+0000 [Poll#info] Checkpoint

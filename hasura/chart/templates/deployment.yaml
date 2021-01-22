@@ -52,6 +52,8 @@ spec:
           value: "/srv/console-assets"
         - name: HASURA_GRAPHQL_JWT_SECRET
           value: '{"jwk_url": "https://dmoiseenko.us.auth0.com/.well-known/jwks.json"}'
+        - name: ACTION_BASE_URL
+          value: "http://nami.{{ .Release.Namespace }}.svc.cluster.local"
         ports:
         - containerPort: 8080
           protocol: TCP
