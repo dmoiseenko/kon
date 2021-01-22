@@ -2,7 +2,7 @@ actions:
 - name: test
   definition:
     kind: synchronous
-    handler: http://nami.z2.svc.cluster.local
+    handler: '{{ACTION_BASE_URL}}'
 custom_types:
   enums: []
   input_objects:
