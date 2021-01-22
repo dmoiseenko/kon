@@ -7,7 +7,7 @@ fastify.post("/", async (request, reply) => {
 })
 
 fastify.get("/", async (request, reply) => {
-  return { hello: "world" }
+  return { hello: "world1" }
 })
 
 const start = async () => {
