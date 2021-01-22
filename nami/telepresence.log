@@ -354,3 +354,43 @@
  573.2 TEL | [49] ran in 0.01 secs.
  577.7 TEL | (proxy checking local liveness)
  577.8  14 | 2021-01-22T13:22:09+0000 [Poll#info] Checkpoint
+ 603.2 TEL | [50] Running: sudo -n echo -n
+ 603.2 TEL | [50] ran in 0.01 secs.
+ 607.7 TEL | (proxy checking local liveness)
+ 607.8  14 | 2021-01-22T13:22:39+0000 [Poll#info] Checkpoint
+ 633.3 TEL | [51] Running: sudo -n echo -n
+ 633.3 TEL | [51] ran in 0.01 secs.
+ 637.7 TEL | (proxy checking local liveness)
+ 637.8  14 | 2021-01-22T13:23:09+0000 [Poll#info] Checkpoint
+ 663.3 TEL | [52] Running: sudo -n echo -n
+ 663.4 TEL | [52] ran in 0.04 secs.
+ 667.7 TEL | (proxy checking local liveness)
+ 667.8  14 | 2021-01-22T13:23:39+0000 [Poll#info] Checkpoint
+ 693.4 TEL | [53] Running: sudo -n echo -n
+ 693.4 TEL | [53] ran in 0.04 secs.
+ 697.7 TEL | (proxy checking local liveness)
+ 697.8  14 | 2021-01-22T13:24:09+0000 [Poll#info] Checkpoint
+ 723.5 TEL | [54] Running: sudo -n echo -n
+ 723.5 TEL | [54] ran in 0.02 secs.
+ 727.7 TEL | (proxy checking local liveness)
+ 727.8  14 | 2021-01-22T13:24:39+0000 [Poll#info] Checkpoint
+ 753.5 TEL | [55] Running: sudo -n echo -n
+ 753.5 TEL | [55] ran in 0.03 secs.
+ 757.7 TEL | (proxy checking local liveness)
+ 757.8  14 | 2021-01-22T13:25:09+0000 [Poll#info] Checkpoint
+ 783.6 TEL | [56] Running: sudo -n echo -n
+ 783.6 TEL | [56] ran in 0.03 secs.
+ 787.7 TEL | (proxy checking local liveness)
+ 787.8  14 | 2021-01-22T13:25:39+0000 [Poll#info] Checkpoint
+ 813.6 TEL | [57] Running: sudo -n echo -n
+ 813.6 TEL | [57] ran in 0.01 secs.
+ 817.7 TEL | (proxy checking local liveness)
+ 817.8  14 | 2021-01-22T13:26:09+0000 [Poll#info] Checkpoint
+ 843.7 TEL | [58] Running: sudo -n echo -n
+ 843.7 TEL | [58] ran in 0.01 secs.
+ 847.7 TEL | (proxy checking local liveness)
+ 847.8  14 | 2021-01-22T13:26:39+0000 [Poll#info] Checkpoint
+ 873.7 TEL | [59] Running: sudo -n echo -n
+ 873.7 TEL | [59] ran in 0.02 secs.
+ 877.7 TEL | (proxy checking local liveness)
+ 877.8  14 | 2021-01-22T13:27:09+0000 [Poll#info] Checkpoint
