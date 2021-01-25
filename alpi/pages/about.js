@@ -34,10 +34,6 @@ const AboutPage = () => (
         initialized. Then we serve the initial HTML with the fetched data and
         hydrate Apollo in the browser.
       </p>
-      <p>
-        This example relies on <a href="http://graph.cool">graph.cool</a> for
-        its GraphQL backend.
-      </p>
     </article>
   </App>
 )
