@@ -1,4 +1,4 @@
-import { gql, useQuery, NetworkStatus } from '@apollo/client'
+import { gql, useQuery } from '@apollo/client'
 import ErrorMessage from './ErrorMessage'
 
 export const ALL_POSTS_QUERY = gql`
