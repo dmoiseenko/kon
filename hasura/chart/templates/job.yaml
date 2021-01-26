@@ -24,7 +24,8 @@ spec:
       containers:
       - name: hasura-metadata
         image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+        command: ["/bin/sh"]
         args:
-            ['sh', '-c', 'source /vault/secrets/database-config && echo Done!']
+            ["-c", "source /vault/secrets/database-config && ./docker-entrypoint.sh 'echo Done!'"]
       restartPolicy: Never
   backoffLimit: 1
