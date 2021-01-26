@@ -17,9 +17,9 @@ metadata:
         export HASURA_GRAPHQL_DATABASE_URL=postgres://{{ .Data.data.username }}:{{ .Data.data.password }}@35.196.127.103:5432/nami
       {{- end }}`}}
 spec:
-  serviceAccount: hasura
   template:
     spec:
+      serviceAccount: hasura
       containers:
       - name: hasura-metadata
         image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
