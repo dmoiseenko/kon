@@ -38,7 +38,7 @@ jobs:
 
       - name: Update kon-config
         env:
-          HASURA_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
+          HASURA_METADATA_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
           FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
           cd kon-config
