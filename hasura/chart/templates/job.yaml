@@ -26,3 +26,4 @@ spec:
     env:
     - name: ACTION_BASE_URL
       value: "http://nami.{{ .Release.Namespace }}.svc.cluster.local"
+  restartPolicy: Never
