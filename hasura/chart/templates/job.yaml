@@ -22,7 +22,7 @@ spec:
     image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
     command: ["/bin/sh"]
     args:
-        ["-c", "source /vault/secrets/database-config && docker-entrypoint.sh"]
+        ["-c", "source /vault/secrets/database-config && docker-entrypoint.sh sleep infinity"]
     env:
     - name: ACTION_BASE_URL
       value: "http://nami.{{ .Release.Namespace }}.svc.cluster.local"
