@@ -1,0 +1,6 @@
+apiVersion: v2
+name: hasura-metadata
+description: A Helm chart for Hasura metadata
+type: application
+version: 0.0.0
+appVersion: 0.0.0

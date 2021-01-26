@@ -1,0 +1,16 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "${_REGISTRY_URL}/hasura-metadata:${_COMMIT_SHA}", "."]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "${_REGISTRY_URL}/hasura-metadata:${_COMMIT_SHA}"]
+  - name: "${_REGISTRY_URL}/helm"
+    entrypoint: "/bin/sh"
+    args:
+    - "-c"
+    - |
+      cd ./chart
+      helm package . --app-version ${_COMMIT_SHA} --version 0.0.${_PATCH_NUMBER}+${_COMMIT_SHA}
+      curl --data-binary "@hasura-metadata-0.0.${_PATCH_NUMBER}+${_COMMIT_SHA}.tgz" ${_KON_HELM_REPO_URL}/api/charts
+    env:
+      - "SKIP_CLUSTER_CONFIG=true"
+logsBucket: 'gs://$PROJECT_ID/build-log'
