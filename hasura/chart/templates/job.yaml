@@ -13,6 +13,6 @@ spec:
     spec:
       containers:
       - name: hasura-metadata
-        image: "{{ .Values.image.repository }}:{{ .Chart.AppVersi>on }}"
+        image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
       restartPolicy: Never
   backoffLimit: 1
