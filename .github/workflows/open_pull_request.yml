@@ -22,4 +22,4 @@ jobs:
           FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
           cd kon-config
-          ./scripts/add_feature_branch.py
+          ./scripts/src/add_feature_branch.py
