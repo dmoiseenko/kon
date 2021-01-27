@@ -47,7 +47,7 @@ spec:
         - name: HASURA_GRAPHQL_DEV_MODE
           value: "true"
         - name: HASURA_GRAPHQL_ENABLE_TELEMETRY
-          value: false
+          value: "false"
         - name: HASURA_GRAPHQL_ENABLED_APIS
           value: "graphql,metadata,config"
         - name: HASURA_GRAPHQL_CONSOLE_ASSETS_DIR
