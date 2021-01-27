@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     name: Push commit
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout kon
@@ -38,8 +38,9 @@ jobs:
 
       - name: Update kon-config
         env:
-          NAMI_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
-          FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+          CHART_NAME: nami
+          CHART_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
+          FEATURE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
         run: |
           cd kon-config
-          ./scripts/update_nami.py
+          ./scripts/src/update_helm_chart.py

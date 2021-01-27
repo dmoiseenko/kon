@@ -9,7 +9,7 @@ on:
 jobs:
   build:
     name: Close Pull Request
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-20.04
 
     steps:
       - name: Checkout kon-config
@@ -33,6 +33,6 @@ jobs:
           FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
           cd kon-config
-          ./scripts/promote_development_environment.py
+          ./scripts/src/promote_development_environment.py
       
       
