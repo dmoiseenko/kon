@@ -42,4 +42,4 @@ jobs:
           FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
         run: |
           cd kon-config
-          ./scripts/update_hasura.py
+          ./scripts/src/update_hasura.py
