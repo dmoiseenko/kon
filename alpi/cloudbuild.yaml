@@ -1,8 +1,8 @@
 steps:
-  - name: "gcr.io/cloud-builders/docker"
-    args: ["build", "-t", "${_REGISTRY_URL}/alpi:${_COMMIT_SHA}", "."]
-  - name: "gcr.io/cloud-builders/docker"
-    args: ["push", "${_REGISTRY_URL}/alpi:${_COMMIT_SHA}"]
+  - name: "gcr.io/kaniko-project/executor:latest"
+    args:
+    - --destination=${_REGISTRY_URL}/alpi:${_COMMIT_SHA}
+    - --cache=true
   - name: "${_REGISTRY_URL}/helm"
     entrypoint: "/bin/sh"
     args:
