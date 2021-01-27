@@ -38,8 +38,9 @@ jobs:
 
       - name: Update kon-config
         env:
-          ALPI_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
-          FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+          CHART_NAME: alpi
+          CHART_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
+          FEATURE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
         run: |
           cd kon-config
-          ./scripts/src/update_alpi.py
+          ./scripts/src/update_helm_chart.py
