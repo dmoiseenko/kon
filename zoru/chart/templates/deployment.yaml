@@ -10,11 +10,11 @@ metadata:
     pg-cluster: {{ include "hasura-metadata.fullname" . }}
     pgo-version: 4.6.0
     pgouser: admin
-  name: {{ include "hasura-metadata.fullname" . }}
+  name: {{ .Release.Namespace }}-{{ include "hasura-metadata.fullname" . }}
   namespace: pgo
 spec:
   BackrestStorage:
-    accessmode: ReadWriteMany
+    accessmode: ReadWriteOnce
     matchLabels: ""
     name: "standard"
     size: 15G
@@ -22,7 +22,7 @@ spec:
     storagetype: dynamic
     supplementalgroups: ""
   PrimaryStorage:
-    accessmode: ReadWriteMany
+    accessmode: ReadWriteOnce
     matchLabels: ""
     name: {{ include "hasura-metadata.fullname" . }}
     size: 15G
@@ -30,7 +30,7 @@ spec:
     storagetype: dynamic
     supplementalgroups: ""
   ReplicaStorage:
-    accessmode: ReadWriteMany
+    accessmode: ReadWriteOnce
     matchLabels: ""
     name: ""
     size: 15G
