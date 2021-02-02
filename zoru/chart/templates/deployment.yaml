@@ -17,7 +17,7 @@ spec:
     accessmode: ReadWriteMany
     matchLabels: ""
     name: "standard-rwo"
-    size: 100G
+    size: 10G
     storageclass: ""
     storagetype: dynamic
     supplementalgroups: ""
@@ -25,7 +25,7 @@ spec:
     accessmode: ReadWriteMany
     matchLabels: ""
     name: {{ include "hasura-metadata.fullname" . }}
-    size: 100G
+    size: 10G
     storageclass: "standard-rwo"
     storagetype: dynamic
     supplementalgroups: ""
@@ -33,7 +33,7 @@ spec:
     accessmode: ReadWriteMany
     matchLabels: ""
     name: ""
-    size: 100G
+    size: 10G
     storageclass: "standard-rwo"
     storagetype: dynamic
     supplementalgroups: ""
