@@ -2,7 +2,7 @@ apiVersion: crunchydata.com/v1
 kind: Pgcluster
 metadata:
   annotations:
-    current-primary: {{ include "zoru.fullname" . }}
+    current-primary: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
   labels:
     crunchy-pgha-scope: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
     deployment-name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
