@@ -2,15 +2,15 @@ apiVersion: crunchydata.com/v1
 kind: Pgcluster
 metadata:
   annotations:
-    current-primary: {{ include "hasura-metadata.fullname" . }}
+    current-primary: {{ include "zoru.fullname" . }}
   labels:
-    crunchy-pgha-scope: {{ include "hasura-metadata.fullname" . }}
-    deployment-name: {{ include "hasura-metadata.fullname" . }}
-    name: {{ include "hasura-metadata.fullname" . }}
-    pg-cluster: {{ include "hasura-metadata.fullname" . }}
+    crunchy-pgha-scope: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
+    deployment-name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
+    name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
+    pg-cluster: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
     pgo-version: 4.6.0
     pgouser: admin
-  name: {{ .Release.Namespace }}-{{ include "hasura-metadata.fullname" . }}
+  name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
   namespace: pgo
 spec:
   BackrestStorage:
