@@ -41,11 +41,11 @@ spec:
   ccpimage: crunchy-postgres-ha
   ccpimageprefix: registry.developers.crunchydata.com/crunchydata
   ccpimagetag: centos8-13.1-4.6.0
-  clustername: {{ include "hasura-metadata.fullname" . }}
+  clustername: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
   database: kon
   exporterport: "9187"
   limits: {}
-  name: {{ include "hasura-metadata.fullname" . }}
+  name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
   namespace: {{ .Release.Namespace }}
   pgDataSource:
     restoreFrom: ""
