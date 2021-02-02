@@ -11,13 +11,13 @@ metadata:
     pgo-version: 4.6.0
     pgouser: admin
   name: {{ include "hasura-metadata.fullname" . }}
-  namespace: {{ .Release.Namespace }}
+  namespace: pgo
 spec:
   BackrestStorage:
     accessmode: ReadWriteMany
     matchLabels: ""
     name: "standard-rwo"
-    size: 10G
+    size: 15G
     storageclass: ""
     storagetype: dynamic
     supplementalgroups: ""
@@ -25,7 +25,7 @@ spec:
     accessmode: ReadWriteMany
     matchLabels: ""
     name: {{ include "hasura-metadata.fullname" . }}
-    size: 10G
+    size: 15G
     storageclass: "standard-rwo"
     storagetype: dynamic
     supplementalgroups: ""
@@ -33,7 +33,7 @@ spec:
     accessmode: ReadWriteMany
     matchLabels: ""
     name: ""
-    size: 10G
+    size: 15G
     storageclass: "standard-rwo"
     storagetype: dynamic
     supplementalgroups: ""
