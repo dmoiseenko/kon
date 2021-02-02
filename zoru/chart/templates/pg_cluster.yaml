@@ -5,7 +5,6 @@ metadata:
     current-primary: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
   labels:
     crunchy-pgha-scope: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
-    # deployment-name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
     name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
     pg-cluster: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
     pgo-version: 4.6.0
@@ -39,7 +38,7 @@ spec:
   name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
   namespace: pgo
   pgDataSource:
-    restoreFrom: ""
+    restoreFrom: "main-zoru"
     restoreOpts: ""
   pgbadgerport: "10000"
   pgoimageprefix: registry.developers.crunchydata.com/crunchydata
