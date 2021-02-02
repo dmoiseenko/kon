@@ -16,15 +16,15 @@ spec:
   BackrestStorage:
     accessmode: ReadWriteMany
     matchLabels: ""
-    name: "standard"
+    name: ""
     size: 15G
-    storageclass: ""
+    storageclass: "standard"
     storagetype: dynamic
     supplementalgroups: ""
   PrimaryStorage:
     accessmode: ReadWriteMany
     matchLabels: ""
-    name: {{ include "hasura-metadata.fullname" . }}
+    name: ""
     size: 15G
     storageclass: "standard"
     storagetype: dynamic
