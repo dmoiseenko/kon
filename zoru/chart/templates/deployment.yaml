@@ -16,7 +16,7 @@ spec:
   BackrestStorage:
     accessmode: ReadWriteMany
     matchLabels: ""
-    name: "standard-rwo"
+    name: "standard"
     size: 15G
     storageclass: ""
     storagetype: dynamic
@@ -26,7 +26,7 @@ spec:
     matchLabels: ""
     name: {{ include "hasura-metadata.fullname" . }}
     size: 15G
-    storageclass: "standard-rwo"
+    storageclass: "standard"
     storagetype: dynamic
     supplementalgroups: ""
   ReplicaStorage:
@@ -34,7 +34,7 @@ spec:
     matchLabels: ""
     name: ""
     size: 15G
-    storageclass: "standard-rwo"
+    storageclass: "standard"
     storagetype: dynamic
     supplementalgroups: ""
   annotations: {}
