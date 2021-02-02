@@ -42,7 +42,7 @@ spec:
   ccpimageprefix: registry.developers.crunchydata.com/crunchydata
   ccpimagetag: centos8-13.1-4.6.0
   clustername: {{ include "hasura-metadata.fullname" . }}
-  database: zoru
+  database: kon
   exporterport: "9187"
   limits: {}
   name: {{ include "hasura-metadata.fullname" . }}
