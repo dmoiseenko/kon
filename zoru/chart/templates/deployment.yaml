@@ -15,28 +15,19 @@ metadata:
 spec:
   BackrestStorage:
     accessmode: ReadWriteOnce
-    matchLabels: ""
-    name: ""
     size: 15G
     storageclass: "standard"
     storagetype: dynamic
-    supplementalgroups: ""
   PrimaryStorage:
     accessmode: ReadWriteOnce
-    matchLabels: ""
-    name: ""
     size: 15G
     storageclass: "standard"
     storagetype: dynamic
-    supplementalgroups: ""
   ReplicaStorage:
     accessmode: ReadWriteOnce
-    matchLabels: ""
-    name: ""
     size: 15G
     storageclass: "standard"
     storagetype: dynamic
-    supplementalgroups: ""
   annotations: {}
   ccpimage: crunchy-postgres-ha
   ccpimageprefix: registry.developers.crunchydata.com/crunchydata
