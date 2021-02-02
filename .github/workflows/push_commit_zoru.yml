@@ -25,7 +25,7 @@ jobs:
 
       - name: Submit Cloud Build
         run: |-
-          gcloud builds submit ./kon/nami --config=./kon/nami/cloudbuild.yaml \
+          gcloud builds submit ./kon/zoru --config=./kon/zoru/cloudbuild.yaml \
             --substitutions=_COMMIT_SHA=${{ github.event.pull_request.head.sha }},_KON_HELM_REPO_URL=${{ secrets.KON_HELM_REPO_URL }},_PATCH_NUMBER=${{ github.run_id }},_REGISTRY_URL=${{ secrets.KON_REGISTRY_URL }}
 
       - name: Checkout kon-config
