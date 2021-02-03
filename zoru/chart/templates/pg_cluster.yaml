@@ -9,6 +9,7 @@ metadata:
     pg-cluster: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
     pgo-version: 4.6.0
     pgouser: admin
+    {{- include "zoru.labels" . | nindent 4 }}
   name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
   namespace: pgo
 spec:
