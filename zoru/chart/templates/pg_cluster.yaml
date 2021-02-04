@@ -20,7 +20,7 @@ spec:
     storagetype: dynamic
   PrimaryStorage:
     accessmode: ReadWriteOnce
-    size: 15G
+    size: 20G
     storageclass: "standard"
     storagetype: dynamic
   ReplicaStorage:
