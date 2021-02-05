@@ -1,6 +1,11 @@
-actions: []
+actions:
+- name: addTodo
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_URL}}'
 custom_types:
   enums: []
   input_objects: []
-  objects: []
+  objects:
+  - name: AddedTodo
   scalars: []
