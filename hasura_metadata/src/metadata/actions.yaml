@@ -1,12 +1,6 @@
-actions:
-- name: test
-  definition:
-    kind: synchronous
-    handler: '{{ACTION_BASE_URL}}'
+actions: []
 custom_types:
   enums: []
-  input_objects:
-  - name: SampleInput
-  objects:
-  - name: SampleOutput
+  input_objects: []
+  objects: []
   scalars: []
