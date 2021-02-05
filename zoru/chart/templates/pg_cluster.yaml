@@ -15,17 +15,17 @@ metadata:
 spec:
   BackrestStorage:
     accessmode: ReadWriteOnce
-    size: 100G
+    size: 10G
     storageclass: "standard"
     storagetype: dynamic
   PrimaryStorage:
     accessmode: ReadWriteOnce
-    size: 100G
+    size: 10G
     storageclass: "standard"
     storagetype: dynamic
   ReplicaStorage:
     accessmode: ReadWriteOnce
-    size: 100G
+    size: 10G
     storageclass: "standard"
     storagetype: dynamic
   annotations: {}
