@@ -9,12 +9,4 @@ custom_types:
   - name: SampleInput
   objects:
   - name: SampleOutput
-    relationships:
-    - remote_table:
-        schema: public
-        name: asd
-      name: test_relationship
-      type: object
-      field_mapping:
-        hello: rty
   scalars: []
