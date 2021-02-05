@@ -9,6 +9,3 @@ image:
 service:
   type: ClusterIP
   port: 80
-
-# https://access.crunchydata.com/documentation/postgres-operator/4.6.0/custom-resources/
-restoreFrom: ""

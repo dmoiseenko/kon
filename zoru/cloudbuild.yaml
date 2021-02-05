@@ -1,8 +1,4 @@
 steps:
-  # - name: "gcr.io/cloud-builders/docker"
-  #   args: ["build", "-t", "${_REGISTRY_URL}/zoru:${_COMMIT_SHA}", "."]
-  # - name: "gcr.io/cloud-builders/docker"
-  #   args: ["push", "${_REGISTRY_URL}/zoru:${_COMMIT_SHA}"]
   - name: "${_REGISTRY_URL}/helm"
     entrypoint: "/bin/sh"
     args:
