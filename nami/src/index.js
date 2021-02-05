@@ -1,9 +1,19 @@
 const fastify = require("fastify")({
   logger: true,
 })
+const { Client } = require("pg")
 
-fastify.post("/", async (request, reply) => {
-  return { hello: "world" }
+fastify.post("/add_todo", async (request, reply) => {
+  const client = new Client({
+    connectionString:
+      "postgres://zoru:srE7uSxFwjbOwv4zK4iaFgRTbwqv1Mwz6wZqh24wRLQ66@zoru:5432/kon",
+  })
+
+  await client.connect()
+
+  const res = await client.query("SELECT NOW();")
+
+  return { id: "world" }
 })
 
 const start = async () => {
