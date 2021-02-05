@@ -1,2 +1,13 @@
+type Mutation {
+  addTodo (
+    text: String!
+  ): AddedTodo
+}
 
+
+
+
+type AddedTodo {
+  id : String!
+}
 

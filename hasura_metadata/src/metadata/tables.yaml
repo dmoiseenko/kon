@@ -1,1 +1,10 @@
-[]
+- table:
+    schema: public
+    name: todo
+  select_permissions:
+  - role: user
+    permission:
+      columns:
+      - id
+      - text
+      filter: {}
