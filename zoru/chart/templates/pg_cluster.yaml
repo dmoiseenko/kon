@@ -2,44 +2,44 @@ apiVersion: crunchydata.com/v1
 kind: Pgcluster
 metadata:
   annotations:
-    current-primary: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
+    current-primary: {{ include "zoru.fullname" . }}
   labels:
-    crunchy-pgha-scope: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
-    name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
-    pg-cluster: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
+    crunchy-pgha-scope: {{ include "zoru.fullname" . }}
+    name: {{ include "zoru.fullname" . }}
+    pg-cluster: {{ include "zoru.fullname" . }}
     pgo-version: 4.6.0
     pgouser: admin
     {{- include "zoru.labels" . | nindent 4 }}
-  name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
+  name: {{ include "zoru.fullname" . }}
   namespace: pgo
 spec:
   BackrestStorage:
     accessmode: ReadWriteOnce
-    size: 15G
+    size: 100G
     storageclass: "standard"
     storagetype: dynamic
   PrimaryStorage:
     accessmode: ReadWriteOnce
-    size: 15G
+    size: 100G
     storageclass: "standard"
     storagetype: dynamic
   ReplicaStorage:
     accessmode: ReadWriteOnce
-    size: 15G
+    size: 100G
     storageclass: "standard"
     storagetype: dynamic
   annotations: {}
   ccpimage: crunchy-postgres-ha
   ccpimageprefix: registry.developers.crunchydata.com/crunchydata
   ccpimagetag: centos8-13.1-4.6.0
-  clustername: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
+  clustername: {{ include "zoru.fullname" . }}
   database: kon
   exporterport: "9187"
   limits: {}
-  name: {{ .Release.Namespace }}-{{ include "zoru.fullname" . }}
+  name: {{ include "zoru.fullname" . }}
   namespace: pgo
   pgDataSource:
-    restoreFrom: "main-zoru"
+    restoreFrom: {{ .Values.restoreFrom }}
     restoreOpts: ""
   pgbadgerport: "10000"
   pgoimageprefix: registry.developers.crunchydata.com/crunchydata
