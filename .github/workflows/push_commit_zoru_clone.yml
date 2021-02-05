@@ -36,11 +36,11 @@ jobs:
           path: kon-config
           fetch-depth: 0
 
-      - name: Update kon-config
-        env:
-          CHART_NAME: zoru_clone
-          CHART_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
-          FEATURE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
-        run: |
-          cd kon-config
-          ./scripts/src/update_helm_chart.py
+      # - name: Update kon-config
+      #   env:
+      #     CHART_NAME: zoru_clone
+      #     CHART_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
+      #     FEATURE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+      #   run: |
+      #     cd kon-config
+      #     ./scripts/src/update_helm_chart.py
