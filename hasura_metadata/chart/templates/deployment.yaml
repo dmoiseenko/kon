@@ -38,7 +38,7 @@ spec:
             ["-c", "source /vault/secrets/database-config && docker-entrypoint.sh graphql-engine serve"]
         env:
         - name: ACTION_BASE_URL
-          value: "http://nami.{{ .Release.Namespace }}.svc.cluster.local"
+          value: "http://nami"
         ports:
         - containerPort: 8080
           protocol: TCP
