@@ -3,8 +3,9 @@ import ErrorMessage from './ErrorMessage'
 
 export const ALL_POSTS_QUERY = gql`
   {
-    asd {
-      asd
+    todo {
+      id
+      text
     }
   }
 `
@@ -17,15 +18,15 @@ export default function PostList() {
   if (error) return <ErrorMessage message="Error loading posts." />
   if (loading) return <div>Loading</div>
 
-  const { asd } = data
+  const { todo: todos } = data
 
   return (
     <section>
       <ul>
-        {asd.map((post, index) => (
-          <li key={post.asd}>
+        {todos.map((todo) => (
+          <li key={todo.id}>
             <div>
-              <span>{post.asd}</span>
+              <span>{todo.text}</span>
             </div>
           </li>
         ))}
