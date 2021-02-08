@@ -48,9 +48,8 @@ export default function Submit() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <h1>Submit</h1>
-      <input placeholder="title" name="title" type="text" required />
-      <input placeholder="url" name="url" type="url" required />
+      <h1>Add todo</h1>
+      <input placeholder="text" name="text" type="text" required />
       <button type="submit" disabled={loading}>
         Submit
       </button>
