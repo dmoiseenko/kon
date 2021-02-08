@@ -1,5 +1,5 @@
-import { gql, useQuery } from '@apollo/client'
-import ErrorMessage from './ErrorMessage'
+import { gql, useQuery } from "@apollo/client"
+import ErrorMessage from "./ErrorMessage"
 
 export const ALL_POSTS_QUERY = gql`
   {
@@ -11,9 +11,9 @@ export const ALL_POSTS_QUERY = gql`
 `
 
 export default function PostList() {
-  const { loading, error, data } = useQuery(
-    ALL_POSTS_QUERY,
-  )
+  const { loading, error, data } = useQuery(ALL_POSTS_QUERY, {
+    pollInterval: 3000
+  })
 
   if (error) return <ErrorMessage message="Error loading posts." />
   if (loading) return <div>Loading</div>
@@ -63,7 +63,7 @@ export default function PostList() {
           border-style: solid;
           border-width: 6px 4px 0 4px;
           border-color: #ffffff transparent transparent transparent;
-          content: '';
+          content: "";
           height: 0;
           margin-right: 5px;
           width: 0;
