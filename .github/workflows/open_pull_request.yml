@@ -10,6 +10,14 @@ jobs:
     runs-on: ubuntu-20.04
 
     steps:
+      - name: Create comment
+        uses: jungwinter/comment@v1
+        id: create
+        with:
+          type: create
+          body: "- [ ] Run tests"
+          issue_number: '1'
+          token: ${{ secrets.PAT_GITHUB }}
       - name: Checkout kon-config
         uses: actions/checkout@v2
         with:
