@@ -1,3 +1,35 @@
+const opts = {
+  schema: {
+    body: {
+      type: "object",
+      required: ["input"],
+      properties: {
+        input: {
+          type: "object",
+          required: ["id", "text"],
+          properties: {
+            id: {
+              type: "string",
+            },
+            text: {
+              type: "string",
+            },
+          },
+        },
+      },
+    },
+    response: {
+      200: {
+        type: "object",
+        required: ["id"],
+        properties: {
+          id: { type: "string" },
+        },
+      },
+    },
+  },
+}
+
 async function route(fastify, options) {
   fastify.post("/edit_todo", async (request, reply) => {
     return fastify.pg.transact(async (client) => {
