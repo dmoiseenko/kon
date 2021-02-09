@@ -4,7 +4,7 @@ import Link from "next/link"
 
 export default function Header() {
   const { pathname } = useRouter()
-  const { user, error, isLoading } = useUser()
+  const { user } = useUser()
 
   return (
     <header>
