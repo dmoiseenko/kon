@@ -1,5 +1,6 @@
 import { gql, useQuery } from "@apollo/client"
 import ErrorMessage from "./ErrorMessage"
+import Todo from "./Todo"
 
 export const ALL_TODO_QUERY = gql`
   {
@@ -10,7 +11,7 @@ export const ALL_TODO_QUERY = gql`
   }
 `
 
-export default function PostList() {
+export default function TodoList() {
   const {
     loading,
     error,
@@ -25,9 +26,7 @@ export default function PostList() {
       <ul>
         {data?.todo.map((t) => (
           <li key={t.id}>
-            <div>
-              <span>{t.text}</span>
-            </div>
+            <Todo todo={t}/>
           </li>
         ))}
       </ul>

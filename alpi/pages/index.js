@@ -1,7 +1,7 @@
 import App from "../components/App"
 import Header from "../components/Header"
 import Submit from "../components/Submit"
-import PostList from "../components/TodoList"
+import TodoList from "../components/TodoList"
 import { useUser } from "@auth0/nextjs-auth0"
 
 const IndexPage = () => {
@@ -14,7 +14,7 @@ const IndexPage = () => {
         {user && (
           <div>
             <Submit />
-            <PostList />
+            <TodoList />
           </div>
         )}
       </App>
