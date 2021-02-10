@@ -1,45 +1,28 @@
-import { gql, useMutation } from '@apollo/client'
-
-const CREATE_POST_MUTATION = gql`
-  mutation createPost($title: String!, $url: String!) {
-    createPost(title: $title, url: $url) {
-      id
-      title
-      votes
-      url
-      createdAt
-    }
-  }
-`
+import { gql, useMutation } from "@apollo/client"
+import { ALL_TODO_QUERY } from "./TodoList"
 
 export default function Submit() {
-  const [createPost, { loading }] = useMutation(CREATE_POST_MUTATION)
+  const [addTodo, { loading }] = useMutation(ADD_TODO_MUTATION)
 
   const handleSubmit = (event) => {
     event.preventDefault()
     const form = event.target
     const formData = new window.FormData(form)
-    const title = formData.get('title')
-    const url = formData.get('url')
+    const text = formData.get("text")
     form.reset()
 
-    createPost({
-      variables: { title, url },
-      update: (cache, { data: { createPost } }) => {
-        cache.modify({
-          fields: {
-            allPosts(existingPosts = []) {
-              const newPostRef = cache.writeFragment({
-                data: createPost,
-                fragment: gql`
-                  fragment NewPost on allPosts {
-                    id
-                    type
-                  }
-                `,
-              })
-              return [newPostRef, ...existingPosts]
-            },
+    addTodo({
+      variables: { text },
+      update(cache, { data }) {
+        const newTodoFromResponse = data.add_todo.todo
+        const existingTodo = cache.readQuery({
+          query: ALL_TODO_QUERY,
+        })
+
+        cache.writeQuery({
+          query: ALL_TODO_QUERY,
+          data: {
+            todo: [...existingTodo.todo, newTodoFromResponse],
           },
         })
       },
@@ -69,4 +52,47 @@ export default function Submit() {
       `}</style>
     </form>
   )
+}
+
+export const ADD_TODO_MUTATION = gql`
+  mutation AddTodo($text: String!) {
+    add_todo(text: $text) {
+      id
+      todo {
+        id
+        text
+      }
+    }
+  }
+`
+
+function useSubmitTodo() {
+  const [addTodo, { loading }] = useMutation(ADD_TODO_MUTATION)
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    const form = event.target
+    const formData = new window.FormData(form)
+    const text = formData.get("text")
+    form.reset()
+
+    addTodo({
+      variables: { text },
+      update(cache, { data }) {
+        const newTodoFromResponse = data.add_todo.todo
+        const existingTodo = cache.readQuery({
+          query: ALL_TODO_QUERY,
+        })
+
+        cache.writeQuery({
+          query: ALL_TODO_QUERY,
+          data: {
+            todo: [...existingTodo.todo, newTodoFromResponse],
+          },
+        })
+      },
+    })
+  }
+
+  return { handleSubmit, loading}
 }

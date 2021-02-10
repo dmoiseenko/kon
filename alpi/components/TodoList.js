@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client"
 import ErrorMessage from "./ErrorMessage"
 
-export const ALL_POSTS_QUERY = gql`
+export const ALL_TODO_QUERY = gql`
   {
     todo {
       id
@@ -11,22 +11,22 @@ export const ALL_POSTS_QUERY = gql`
 `
 
 export default function PostList() {
-  const { loading, error, data } = useQuery(ALL_POSTS_QUERY, {
-    pollInterval: 3000
-  })
+  const {
+    loading,
+    error,
+    data,
+  } = useQuery(ALL_TODO_QUERY)
 
-  if (error) return <ErrorMessage message="Error loading posts." />
+  if (error) return <ErrorMessage message="Error loading todo." />
   if (loading) return <div>Loading</div>
-
-  const { todo: todos } = data
 
   return (
     <section>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>
+        {data?.todo.map((t) => (
+          <li key={t.id}>
             <div>
-              <span>{todo.text}</span>
+              <span>{t.text}</span>
             </div>
           </li>
         ))}
