@@ -1,0 +1,34 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "nami.fullname" . }}
+  labels:
+    {{- include "nami.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "nami.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "nami.selectorLabels" . | nindent 8 }}
+      annotations:
+        vault.hashicorp.com/agent-init-first: "true"
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "internal-app"
+        vault.hashicorp.com/agent-inject-secret-database-config: "internal/data/database/zoru_user"
+        vault.hashicorp.com/agent-inject-template-database-config: |
+          {{`{{- with secret "internal/data/database/zoru_user" -}}
+            postgres://{{ .Data.data.username }}:{{ .Data.data.password }}@zoru:5432/kon
+          {{- end }}`}}
+    spec:
+      serviceAccountName: nami
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP

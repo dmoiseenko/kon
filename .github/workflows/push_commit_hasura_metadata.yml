@@ -1,0 +1,46 @@
+name: hasura_metadata
+
+on:
+  pull_request:
+    paths:
+      - hasura_metadata/**
+
+jobs:
+  build:
+    name: Push commit
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout kon
+        uses: actions/checkout@v2
+        with:
+          path: kon
+
+      - name: gcloud setup
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          version: "319.0.0"
+          service_account_key: ${{ secrets.BUILD_PROJECT_SA_KEY }}
+          project_id: ${{ secrets.BUILD_PROJECT_ID }}
+
+      - name: Submit Cloud Build
+        run: |-
+          gcloud builds submit ./kon/hasura_metadata --config=./kon/hasura_metadata/cloudbuild.yaml \
+            --substitutions=_COMMIT_SHA=${{ github.event.pull_request.head.sha }},_KON_HELM_REPO_URL=${{ secrets.KON_HELM_REPO_URL }},_PATCH_NUMBER=${{ github.run_id }},_REGISTRY_URL=${{ secrets.KON_REGISTRY_URL }}
+
+      - name: Checkout kon-config
+        uses: actions/checkout@v2
+        with:
+          repository: dmoiseenko/kon-config
+          token: ${{ secrets.PAT_GITHUB }}
+          path: kon-config
+          fetch-depth: 0
+
+      - name: Update kon-config
+        env:
+          CHART_NAME: hasura-metadata
+          CHART_VERSION: 0.0.${{ github.run_id }}+${{ github.event.pull_request.head.sha }}
+          FEATURE_BRANCH_NAME: ${{ github.event.pull_request.head.ref }}
+        run: |
+          cd kon-config
+          ./scripts/src/update_helm_chart.py

@@ -1,0 +1,8 @@
+steps:
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["pull", "chartmuseum/chartmuseum"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["tag", "chartmuseum/chartmuseum", "${_REGISTRY_URL}/chartmuseum"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "${_REGISTRY_URL}/chartmuseum"]
+logsBucket: 'gs://$PROJECT_ID/build-log'

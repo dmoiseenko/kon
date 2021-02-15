@@ -1,0 +1,8 @@
+steps:
+  - name: "gcr.io/cloud-builders/git"
+    args: ["clone", "https://github.com/GoogleCloudPlatform/cloud-builders-community"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["build", "-t", "${_REGISTRY_URL}/helm", "/workspace/cloud-builders-community/helm"]
+  - name: "gcr.io/cloud-builders/docker"
+    args: ["push", "${_REGISTRY_URL}/helm"]
+logsBucket: 'gs://$PROJECT_ID/build-log'

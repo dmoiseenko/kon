@@ -1,0 +1,38 @@
+name: Close Pull Request
+
+on:
+  pull_request:
+    types: [closed]
+    branches:
+      - main
+
+jobs:
+  build:
+    name: Close Pull Request
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Checkout kon-config
+        uses: actions/checkout@v2
+        with:
+          repository: dmoiseenko/kon-config
+          token: ${{ secrets.PAT_GITHUB }}
+          path: kon-config
+          fetch-depth: 0
+
+      - name: Remove preview environment
+        env:
+          FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          cd kon-config
+          ./scripts/src/remove_feature_branch.py
+
+      - name: Promote preview environment
+        if: github.event.pull_request.merged == true
+        env:
+          FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          cd kon-config
+          ./scripts/src/promote_development_environment.py
+      
+      

@@ -1,0 +1,19 @@
+{
+  "name": "nami",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon -L --watch src -e js ./src/index.js",
+    "start": "node ./src/index.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "3.10.1",
+    "fastify-postgres": "3.4.0",
+    "nodemon": "2.0.7",
+    "pg": "8.5.1",
+    "uuid": "8.3.2"
+  }
+}

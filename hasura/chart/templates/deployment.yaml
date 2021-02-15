@@ -1,0 +1,62 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    {{- include "hasura.labels" . | nindent 4 }}
+    hasuraService: custom
+  name: {{ include "hasura.fullname" . }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "hasura.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        {{- include "hasura.selectorLabels" . | nindent 8 }}
+      annotations:
+        vault.hashicorp.com/agent-init-first: "true"
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "internal-app"
+        vault.hashicorp.com/agent-inject-secret-database-config: "internal/data/database/zoru_user"
+        vault.hashicorp.com/agent-inject-template-database-config: |
+          {{`{{- with secret "internal/data/database/zoru_user" -}}
+            export HASURA_GRAPHQL_DATABASE_URL=postgres://{{ .Data.data.username }}:{{ .Data.data.password }}@zoru:5432/kon
+          {{- end }}`}}
+        vault.hashicorp.com/agent-inject-secret-hasura-config: "internal/data/hasura"
+        vault.hashicorp.com/agent-inject-template-hasura-config: |
+          {{`{{- with secret "internal/data/hasura" -}}
+            export HASURA_GRAPHQL_ADMIN_SECRET={{ .Data.data.admin_secret }}
+          {{- end }}`}}
+    spec:
+      serviceAccountName: hasura
+      containers:
+      - image: hasura/graphql-engine:v1.3.3
+        imagePullPolicy: IfNotPresent
+        readinessProbe:
+          httpGet:
+            path: /healthz
+            port: 8080
+        name: {{ .Chart.Name }}
+        args:
+            ['sh', '-c', 'source /vault/secrets/database-config && source /vault/secrets/hasura-config && graphql-engine serve']
+        env:
+        - name: HASURA_GRAPHQL_ENABLE_CONSOLE
+          value: "true"
+        - name: HASURA_GRAPHQL_DEV_MODE
+          value: "true"
+        - name: HASURA_GRAPHQL_ENABLE_TELEMETRY
+          value: "false"
+        - name: HASURA_GRAPHQL_ENABLED_APIS
+          value: "graphql,metadata,config"
+        - name: HASURA_GRAPHQL_CONSOLE_ASSETS_DIR
+          value: "/srv/console-assets"
+        - name: HASURA_GRAPHQL_JWT_SECRET
+          value: '{"jwk_url": "https://dmoiseenko.us.auth0.com/.well-known/jwks.json"}'
+        - name: ACTION_BASE_URL
+          value: "http://nami"
+        ports:
+        - containerPort: 8080
+          protocol: TCP
+        resources: {}

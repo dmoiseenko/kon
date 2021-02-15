@@ -1,0 +1,55 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ include "alpi.fullname" . }}
+  labels:
+    {{- include "alpi.labels" . | nindent 4 }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      {{- include "alpi.selectorLabels" . | nindent 6 }}
+  template:
+    metadata:
+      labels:
+        {{- include "alpi.selectorLabels" . | nindent 8 }}
+      annotations:
+        vault.hashicorp.com/agent-init-first: "true"
+        vault.hashicorp.com/agent-inject: "true"
+        vault.hashicorp.com/role: "internal-app"
+        vault.hashicorp.com/agent-inject-secret-auth0-secret: "internal/data/auth0"
+        vault.hashicorp.com/agent-inject-template-auth0-secret: |
+          {{`{{- with secret "internal/data/auth0" -}}
+            export AUTH0_SECRET={{ .Data.data.secret }}
+          {{- end }}`}}
+        vault.hashicorp.com/agent-inject-secret-auth0-client-id: "internal/data/auth0"
+        vault.hashicorp.com/agent-inject-template-auth0-client-id: |
+          {{`{{- with secret "internal/data/auth0" -}}
+            export AUTH0_CLIENT_ID={{ .Data.data.client_id }}
+          {{- end }}`}}
+        vault.hashicorp.com/agent-inject-secret-auth0-client-secret: "internal/data/auth0"
+        vault.hashicorp.com/agent-inject-template-auth0-client-secret: |
+          {{`{{- with secret "internal/data/auth0" -}}
+            export AUTH0_CLIENT_SECRET={{ .Data.data.client_secret }}
+          {{- end }}`}}
+    spec:
+      serviceAccountName: alpi
+      containers:
+        - name: {{ .Chart.Name }}
+          image: "{{ .Values.image.repository }}:{{ .Chart.AppVersion }}"
+          imagePullPolicy: IfNotPresent
+          args:
+            ['sh', '-c', 'source /vault/secrets/auth0-secret && source /vault/secrets/auth0-client-id && source /vault/secrets/auth0-client-secret && npm run start']
+          ports:
+            - name: http
+              containerPort: 3000
+              protocol: TCP
+          env:
+            - name: AUTH0_BASE_URL
+              value: "https://{{ .Release.Namespace }}.dev.dmoiseenko.me/"
+            - name: AUTH0_ISSUER_BASE_URL
+              value: "https://dmoiseenko.us.auth0.com"
+            - name: NAMI_GRAPHQL_URL
+              value: "http://hasura/v1/graphql"
+            - name: AUTH0_BASE_URL
+              value: "https://{{ .Release.Namespace }}.dev.dmoiseenko.me/"

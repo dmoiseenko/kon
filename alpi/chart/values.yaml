@@ -1,0 +1,11 @@
+replicaCount: 1
+
+image:
+  repository: ""
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80

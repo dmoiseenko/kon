@@ -1,0 +1,33 @@
+name: Open Pull Request
+
+on:
+  pull_request:
+    types: [opened, reopened]
+
+jobs:
+  build:
+    name: Open Pull Request
+    runs-on: ubuntu-20.04
+
+    steps:
+      - name: Create comment
+        uses: jungwinter/comment@v1
+        id: create
+        with:
+          type: create
+          body: "- [ ] Run tests"
+          issue_number: '1'
+          token: ${{ secrets.PAT_GITHUB }}
+      - name: Checkout kon-config
+        uses: actions/checkout@v2
+        with:
+          repository: dmoiseenko/kon-config
+          token: ${{ secrets.PAT_GITHUB }}
+          path: kon-config
+
+      - name: Update kon-config
+        env:
+          FEATURE_BRANCH: ${{ github.event.pull_request.head.ref }}
+        run: |
+          cd kon-config
+          ./scripts/src/add_feature_branch.py

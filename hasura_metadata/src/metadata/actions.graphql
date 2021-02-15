@@ -1,0 +1,36 @@
+type Mutation {
+  add_todo (
+    text: String!
+  ): AddedTodo
+}
+
+
+type Mutation {
+  edit_todo (
+    id: String!
+    text: String!
+  ): EditedTodo
+}
+
+
+type Mutation {
+  remove_todo (
+    id: String!
+  ): RemovedTodo
+}
+
+
+
+
+type AddedTodo {
+  id : String!
+}
+
+type RemovedTodo {
+  id : String!
+}
+
+type EditedTodo {
+  id : String!
+}
+

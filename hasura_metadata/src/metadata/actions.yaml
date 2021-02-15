@@ -1,0 +1,35 @@
+actions:
+- name: add_todo
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_URL}}/add_todo'
+  permissions:
+  - role: user
+- name: edit_todo
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_URL}}/edit_todo'
+  permissions:
+  - role: user
+- name: remove_todo
+  definition:
+    kind: synchronous
+    handler: '{{ACTION_BASE_URL}}/remove_todo'
+  permissions:
+  - role: user
+custom_types:
+  enums: []
+  input_objects: []
+  objects:
+  - name: AddedTodo
+    relationships:
+    - remote_table:
+        schema: public
+        name: todo
+      name: todo
+      type: object
+      field_mapping:
+        id: id
+  - name: RemovedTodo
+  - name: EditedTodo
+  scalars: []
